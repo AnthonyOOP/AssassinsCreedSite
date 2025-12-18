@@ -1,378 +1,114 @@
+https://anthonyoop.github.io/AssassinsCreedSite/
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desynchronization Error 404</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Courier New', 'Segoe UI', monospace;
-        }
-        
-        body {
-            background: #0a0a0a;
-            color: #00ff00;
-            min-height: 100vh;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(0, 30, 0, 0.3) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(0, 30, 0, 0.2) 0%, transparent 20%);
-        }
-        
-        /* Эффект сканирующих линий */
-        .scanlines {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                to bottom,
-                transparent 50%,
-                rgba(0, 255, 0, 0.03) 50%
-            );
-            background-size: 100% 4px;
-            pointer-events: none;
-            z-index: 1;
-            animation: scan 8s linear infinite;
-        }
-        
-        @keyframes scan {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 100%; }
-        }
-        
-        .container {
-            max-width: 800px;
-            padding: 2rem;
-            position: relative;
-            z-index: 2;
-            border: 1px solid rgba(0, 255, 0, 0.3);
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
-            background-color: rgba(5, 10, 5, 0.85);
-            backdrop-filter: blur(5px);
-        }
-        
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(0, 255, 0, 0.3);
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.5rem;
-            color: #ff3300;
-        }
-        
-        .logo i {
-            font-size: 2rem;
-        }
-        
-        .error-code {
-            font-size: 1.2rem;
-            color: #ff3300;
-            letter-spacing: 3px;
-        }
-        
-        .message-box {
-            margin: 2rem 0;
-            padding: 1.5rem;
-            border-left: 3px solid #ff3300;
-            background-color: rgba(0, 20, 0, 0.5);
-        }
-        
-        .warning {
-            color: #ff3300;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .title {
-            font-size: 5rem;
-            color: #ff3300;
-            text-align: center;
-            margin: 1rem 0;
-            text-shadow: 0 0 10px rgba(255, 50, 0, 0.7);
-            letter-spacing: 5px;
-            font-weight: bold;
-        }
-        
-        .subtitle {
-            font-size: 1.8rem;
-            color: #00ff00;
-            text-align: center;
-            margin-bottom: 2rem;
-            letter-spacing: 2px;
-        }
-        
-        .quote {
-            font-style: italic;
-            margin: 2rem 0;
-            padding: 1rem;
-            border-top: 1px dashed rgba(0, 255, 0, 0.3);
-            border-bottom: 1px dashed rgba(0, 255, 0, 0.3);
-            color: #aaa;
-            line-height: 1.6;
-        }
-        
-        .quote .highlight {
-            color: #ffaa00;
-        }
-        
-        .actions {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 3rem;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            padding: 12px 30px;
-            background-color: rgba(0, 30, 0, 0.8);
-            color: #00ff00;
-            border: 1px solid rgba(0, 255, 0, 0.5);
-            text-decoration: none;
-            font-weight: bold;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .btn:hover {
-            background-color: rgba(0, 50, 0, 0.9);
-            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
-            transform: translateY(-2px);
-        }
-        
-        .btn-danger {
-            background-color: rgba(80, 0, 0, 0.7);
-            color: #ff3300;
-            border-color: rgba(255, 50, 0, 0.5);
-        }
-        
-        .btn-danger:hover {
-            background-color: rgba(100, 0, 0, 0.9);
-            box-shadow: 0 0 15px rgba(255, 50, 0, 0.5);
-        }
-        
-        .footer {
-            margin-top: 3rem;
-            text-align: center;
-            color: #555;
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(0, 255, 0, 0.1);
-            padding-top: 1rem;
-        }
-        
-        .glitch {
-            position: relative;
-            animation: glitch 5s infinite;
-        }
-        
-        @keyframes glitch {
-            0% { transform: translate(0); }
-            2% { transform: translate(-2px, 2px); }
-            4% { transform: translate(-2px, -2px); }
-            6% { transform: translate(2px, 2px); }
-            8% { transform: translate(2px, -2px); }
-            10% { transform: translate(0); }
-            100% { transform: translate(0); }
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { opacity: 0.7; }
-            50% { opacity: 1; }
-            100% { opacity: 0.7; }
-        }
-        
-        .matrix-effect {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.1;
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                margin: 1rem;
-                padding: 1rem;
-            }
-            
-            .title {
-                font-size: 3.5rem;
-            }
-            
-            .subtitle {
-                font-size: 1.5rem;
-            }
-            
-            .actions {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-    </style>
+    <title>Assassin's Creed - Главная</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
 </head>
+
 <body>
-    <!-- Эффект падающих символов Matrix -->
-    <canvas class="matrix-effect" id="matrix"></canvas>
-    
-    <!-- Эффект сканирующих линий -->
-    <div class="scanlines"></div>
-    
-    <div class="container">
-        <div class="header">
-            <div class="logo">
-                <i class="fas fa-skull-crossbones"></i>
-                <span>ANIMUS OS v2.18</span>
+    <header>
+
+        <div class="header-background"></div>
+
+        <div class="header-overlay"></div>
+
+        <div class="container header-content">
+            <div class="logo-image">
+                <img src="images/ACLogo.png" alt="Assassin's Creed Logo" class="main-logo">
             </div>
-            <div class="error-code">ERROR #404</div>
+            <p class="site-subtitle">"Nothing is true, everything is permitted"</p>
         </div>
-        
-        <div class="message-box">
-            <div class="warning">
-                <i class="fas fa-exclamation-triangle"></i>
-                <span>WARNING: DESYNCHRONIZATION DETECTED</span>
+    </header>
+
+    <div class="navigation">
+        <div class="container nav-container">
+            <div class="nav-section nav-left">
+                <ul class="nav-links">
+                    <li><a href="#"><i class="fas fa-home"></i> Главная</a></li>
+                    <li><a href="https://anthonyoop.github.io/AssassinsCreedSite/1"><i class="fas fa-history"></i> Хронология</a></li>
+                    <li><a href="https://anthonyoop.github.io/AssassinsCreedSite/1"><i class="fas fa-user-secret"></i> Ассасины</a></li>
+                    <li><a href="https://anthonyoop.github.io/AssassinsCreedSite/1"><i class="fas fa-crosshairs"></i> Тамплиеры</a></li>
+                </ul>
             </div>
-            <p>Memory corridor corrupted. Subject cannot access requested memory sequence.</p>
-        </div>
-        
-        <h1 class="title glitch">404</h1>
-        <h2 class="subtitle pulse">MEMORY FRAGMENT NOT FOUND</h2>
-        
-        <div class="quote">
-            "Altaïr also made a mistake when he was faithful to his master to the last. Therefore, before it's too late, do not hesitate like Ezio.<br><br>
-            <span class="highlight">Come back. Don't lose the Apple of Eden...</span>"
-        </div>
-        
-        <div class="actions">
-            <a href="/" class="btn">
-                <i class="fas fa-home"></i>
-                Return to Headquarters
-            </a>
-            <a href="#" class="btn" id="syncBtn">
-                <i class="fas fa-sync-alt"></i>
-                Resynchronize
-            </a>
-            <a href="#" class="btn btn-danger" id="reportBtn">
-                <i class="fas fa-exclamation-circle"></i>
-                Report to Abstergo
-            </a>
-        </div>
-        
-        <div class="footer">
-            <p>Animus System • Abstergo Industries Confidential • Memory Sequence Interrupted</p>
-            <p>«Nothing is true, everything is permitted»</p>
+
+            <div class="nav-section nav-right">
+                <ul class="nav-links">
+                    <li><a href="https://anthonyoop.github.io/AssassinsCreedSite/1"><i class="fas fa-gamepad"></i> Игры</a></li>
+                    <li><a href="https://anthonyoop.github.io/AssassinsCreedSite/1"><i class="fas fa-book"></i> Лор(сюжет серии)</a></li>
+                    <li><a href="https://anthonyoop.github.io/AssassinsCreedSite/1"><i class="fas fa-video"></i> Медиа</a></li>
+                    <li><a href="https://anthonyoop.github.io/AssassinsCreedSite/1"><i class="fas fa-shopping-cart"></i> Магазин</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 
-    <script>
-        // Матричный эффект
-        const canvas = document.getElementById('matrix');
-        const ctx = canvas.getContext('2d');
-        
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        
-        const letters = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const lettersArray = letters.split('');
-        
-        const fontSize = 14;
-        const columns = canvas.width / fontSize;
-        
-        const drops = [];
-        for(let i = 0; i < columns; i++) {
-            drops[i] = Math.floor(Math.random() * canvas.height);
-        }
-        
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(0, 10, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            ctx.fillStyle = '#0f0';
-            ctx.font = fontSize + 'px monospace';
-            
-            for(let i = 0; i < drops.length; i++) {
-                const text = lettersArray[Math.floor(Math.random() * lettersArray.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                
-                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                
-                drops[i]++;
-            }
-        }
-        
-        setInterval(drawMatrix, 50);
-        
-        // Изменение размера канваса при изменении размера окна
-        window.addEventListener('resize', function() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-        
-        // Интерактивные кнопки
-        document.getElementById('syncBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            this.innerHTML = '<i class="fas fa-cog fa-spin"></i> Resynchronizing...';
-            this.classList.add('pulse');
-            
-            setTimeout(() => {
-                this.innerHTML = '<i class="fas fa-check"></i> Synchronization Failed';
-                this.style.backgroundColor = 'rgba(80, 0, 0, 0.7)';
-                this.classList.remove('pulse');
-            }, 2000);
-        });
-        
-        document.getElementById('reportBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Abstergo Industries: Report logged. An agent will review this desynchronization event.');
-        });
-        
-        // Случайные эффекты глитча для заголовка
-        const title = document.querySelector('.title');
-        setInterval(() => {
-            if(Math.random() > 0.7) {
-                title.classList.add('glitch');
-                setTimeout(() => {
-                    title.classList.remove('glitch');
-                }, 300);
-            }
-        }, 3000);
-    </script>
+    <div class="container">
+        <div class="main-content">
+            <div class="image-section">
+                <div class="image-container">
+                    <img src="images/mainimage.webp" alt="Assassin 's Creed Valhalla" class="main-image">
+                </div>
+                <p class="image-info">Наоэ и Ясукэ из Assassin's Creed Shadows — Девушка-ниндзя-куноичи и самурай. Последняя часть серии на данный момент</p>
+            </div>
+
+            <div class="info-section">
+                <h2 class="info-title">О серии</h2>
+                <div class="info-content">
+                    <p>Assassin's Creed — медиафраншиза компании Ubisoft, повествующая о многовековой тайной войне между орденом ассасинов и тамплиеров.</p>
+                    <br>
+                    <p>Действие игр серии происходит в различные исторические эпохи (эпоха Крестовых походов, Возрождение, колониальная Америка, Викторианская эпоха и др.) и содержит элементы научной фантастики.</p>
+                    <br>
+                    <p>Основной сюжет рассказывает о противостоянии двух древних организаций — ассасинов и тамплиеров, а также об использовании технологии «Анимус», позволяющей пользователям переживать воспоминания предков.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-section">
+            <h2 class="gallery-title">Галерея игр серии</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/Altair.webp" alt="Assassin's Creed I" class="gallery-image">
+                    <div class="gallery-caption">Assassin's Creed I (Альтаир ибн Ла-Ахад)</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/Ezio.webp" alt="Assassin's Creed II" class="gallery-image">
+                    <div class="gallery-caption">Assassin's Creed II (Эцио Аудиторе да Фиренце)</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/Connor.jpg" alt="Assassin's Creed Odyssey" class="gallery-image">
+                    <div class="gallery-caption">Assassin's Creed III (Коннор Кенуэй)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="additional-info">
+            <h2 class="additional-title">Интересная информация</h2>
+            <div class="additional-content">
+                <p>Франшиза Assassin's Creed включает в себя не только видеоигры, но также комиксы, книги, фильмы и другие медиа. Первая игра вышла в 2007 году, и с тех пор серия стала одной из самых успешных в игровой индустрии.</p>
+                <br>
+                <p>Основные темы франшизы — свобода воли, мораль, природа власти и влияние технологий на общество. Игры известны своей исторической достоверностью в воссоздании городов и событий прошлого.</p>
+                <br>
+                <p>На данный момент в основной серии вышло более десяти игр, действие которых происходит в разных странах и эпохах, от Древнего Египта до Викторианской Англии и эпохи викингов.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p class="copyright">© 2025 Assassin's Creed Fan Site. Все права защищены. Все материалы используются в ознакомительных целях.</p>
+            <p class="copyright">Все торговые марки являются собственностью Ubisoft Entertainment.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
+
+
 </html>
+
