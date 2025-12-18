@@ -3,14 +3,376 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>You are not supposed to be here...</title>
+    <title>Desynchronization Error 404</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', 'Segoe UI', monospace;
+        }
+        
+        body {
+            background: #0a0a0a;
+            color: #00ff00;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 30, 0, 0.3) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 30, 0, 0.2) 0%, transparent 20%);
+        }
+        
+        /* Эффект сканирующих линий */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent 50%,
+                rgba(0, 255, 0, 0.03) 50%
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 1;
+            animation: scan 8s linear infinite;
+        }
+        
+        @keyframes scan {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100%; }
+        }
+        
+        .container {
+            max-width: 800px;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+            background-color: rgba(5, 10, 5, 0.85);
+            backdrop-filter: blur(5px);
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.3);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            color: #ff3300;
+        }
+        
+        .logo i {
+            font-size: 2rem;
+        }
+        
+        .error-code {
+            font-size: 1.2rem;
+            color: #ff3300;
+            letter-spacing: 3px;
+        }
+        
+        .message-box {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border-left: 3px solid #ff3300;
+            background-color: rgba(0, 20, 0, 0.5);
+        }
+        
+        .warning {
+            color: #ff3300;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .title {
+            font-size: 5rem;
+            color: #ff3300;
+            text-align: center;
+            margin: 1rem 0;
+            text-shadow: 0 0 10px rgba(255, 50, 0, 0.7);
+            letter-spacing: 5px;
+            font-weight: bold;
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            color: #00ff00;
+            text-align: center;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+        }
+        
+        .quote {
+            font-style: italic;
+            margin: 2rem 0;
+            padding: 1rem;
+            border-top: 1px dashed rgba(0, 255, 0, 0.3);
+            border-bottom: 1px dashed rgba(0, 255, 0, 0.3);
+            color: #aaa;
+            line-height: 1.6;
+        }
+        
+        .quote .highlight {
+            color: #ffaa00;
+        }
+        
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            background-color: rgba(0, 30, 0, 0.8);
+            color: #00ff00;
+            border: 1px solid rgba(0, 255, 0, 0.5);
+            text-decoration: none;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn:hover {
+            background-color: rgba(0, 50, 0, 0.9);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background-color: rgba(80, 0, 0, 0.7);
+            color: #ff3300;
+            border-color: rgba(255, 50, 0, 0.5);
+        }
+        
+        .btn-danger:hover {
+            background-color: rgba(100, 0, 0, 0.9);
+            box-shadow: 0 0 15px rgba(255, 50, 0, 0.5);
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            text-align: center;
+            color: #555;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(0, 255, 0, 0.1);
+            padding-top: 1rem;
+        }
+        
+        .glitch {
+            position: relative;
+            animation: glitch 5s infinite;
+        }
+        
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            2% { transform: translate(-2px, 2px); }
+            4% { transform: translate(-2px, -2px); }
+            6% { transform: translate(2px, 2px); }
+            8% { transform: translate(2px, -2px); }
+            10% { transform: translate(0); }
+            100% { transform: translate(0); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+        
+        .matrix-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.1;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .title {
+                font-size: 3.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
-<body style="background-color: rgb(35,35,35);">
-    <center>
-        <h2 style="color:white;">Warning...Error</h2>
-        <h1 style="color: red; font-family: monospace;">Desynchronization</h1>
-        <p><b>Altair</b> also made a mistake when he was <big><i>4</i></big>aithful to his master to the last. <big><i>0</i></big>herefore, before it's too late, do not hesitate like <b>Ezio</b>.</p>
-        <p>Come back. Don't lose the <b>Apple o<big><i>4</i></big> Eden...</b></p>
-    </center>
+<body>
+    <!-- Эффект падающих символов Matrix -->
+    <canvas class="matrix-effect" id="matrix"></canvas>
+    
+    <!-- Эффект сканирующих линий -->
+    <div class="scanlines"></div>
+    
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-skull-crossbones"></i>
+                <span>ANIMUS OS v2.18</span>
+            </div>
+            <div class="error-code">ERROR #404</div>
+        </div>
+        
+        <div class="message-box">
+            <div class="warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>WARNING: DESYNCHRONIZATION DETECTED</span>
+            </div>
+            <p>Memory corridor corrupted. Subject cannot access requested memory sequence.</p>
+        </div>
+        
+        <h1 class="title glitch">404</h1>
+        <h2 class="subtitle pulse">MEMORY FRAGMENT NOT FOUND</h2>
+        
+        <div class="quote">
+            "Altaïr also made a mistake when he was faithful to his master to the last. Therefore, before it's too late, do not hesitate like Ezio.<br><br>
+            <span class="highlight">Come back. Don't lose the Apple of Eden...</span>"
+        </div>
+        
+        <div class="actions">
+            <a href="/" class="btn">
+                <i class="fas fa-home"></i>
+                Return to Headquarters
+            </a>
+            <a href="#" class="btn" id="syncBtn">
+                <i class="fas fa-sync-alt"></i>
+                Resynchronize
+            </a>
+            <a href="#" class="btn btn-danger" id="reportBtn">
+                <i class="fas fa-exclamation-circle"></i>
+                Report to Abstergo
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p>Animus System • Abstergo Industries Confidential • Memory Sequence Interrupted</p>
+            <p>«Nothing is true, everything is permitted»</p>
+        </div>
+    </div>
+
+    <script>
+        // Матричный эффект
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const letters = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const lettersArray = letters.split('');
+        
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        
+        const drops = [];
+        for(let i = 0; i < columns; i++) {
+            drops[i] = Math.floor(Math.random() * canvas.height);
+        }
+        
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 10, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#0f0';
+            ctx.font = fontSize + 'px monospace';
+            
+            for(let i = 0; i < drops.length; i++) {
+                const text = lettersArray[Math.floor(Math.random() * lettersArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                
+                drops[i]++;
+            }
+        }
+        
+        setInterval(drawMatrix, 50);
+        
+        // Изменение размера канваса при изменении размера окна
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
+        // Интерактивные кнопки
+        document.getElementById('syncBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            this.innerHTML = '<i class="fas fa-cog fa-spin"></i> Resynchronizing...';
+            this.classList.add('pulse');
+            
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-check"></i> Synchronization Failed';
+                this.style.backgroundColor = 'rgba(80, 0, 0, 0.7)';
+                this.classList.remove('pulse');
+            }, 2000);
+        });
+        
+        document.getElementById('reportBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Abstergo Industries: Report logged. An agent will review this desynchronization event.');
+        });
+        
+        // Случайные эффекты глитча для заголовка
+        const title = document.querySelector('.title');
+        setInterval(() => {
+            if(Math.random() > 0.7) {
+                title.classList.add('glitch');
+                setTimeout(() => {
+                    title.classList.remove('glitch');
+                }, 300);
+            }
+        }, 3000);
+    </script>
 </body>
 </html>
